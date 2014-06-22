@@ -4,9 +4,17 @@
 	</head>
 	<body>
 		<form method="post" enctype="application/x-www-form-urlencoded" action="">
-			<input type="text" placeholder="Pw name"></input><br>
-			<input type="password" placeholder="Password"></input><br>
-			<input type="submit" value="submit"></input>
+			<div>
+				<label for="pwname">Password name:</label>
+				<input type="text" name="pwname" id="pwname" />
+			</div>
+			<div>
+				<label for="mpw">Master password:</label>
+				<input type="password" name="mpw" id="mpw" />
+			</div>
+			<div class="button">
+				<button type="submit">go</button>
+			</div>
 		</form>
 	</body>
 </html>
