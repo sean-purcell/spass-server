@@ -1,9 +1,14 @@
-var http = require('http'),
+var https = require('https'),
       fs = require('fs'),
     querystring = require('querystring'),
     exec = require('child_process').exec;
 
-var server = http.createServer(handler);
+var options = {
+	key: fs.readFileSync('cert/key.pem'),
+	cert: fs.readFileSync('cert/cert.pem')
+}
+
+var server = https.createServer(options, handler);
 
 server.listen(8000);
 
