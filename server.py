@@ -7,7 +7,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-SPASS='/usr/local/bin/spass'
+SPASS=sys.argv[1] if len(sys.argv) > 1 else '/usr/local/bin/spass'
 
 def call_spass(name, master):
     p = subprocess.Popen([
@@ -35,6 +35,4 @@ def index():
     return app.send_static_file('index.html')
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        SPASS = sys.argv[1]
     app.run()
