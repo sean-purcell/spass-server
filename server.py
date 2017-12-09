@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import logging
 import subprocess
 import sys
 
@@ -8,6 +9,11 @@ from flask import Flask, request
 app = Flask(__name__)
 
 SPASS=sys.argv[1] if len(sys.argv) > 1 else '/usr/local/bin/spass'
+
+@app.before_first_request
+def setup():
+    app.logger.addHandler(logging.StreamHandler())
+    app.logger.setLevel(logging.INFO)
 
 def call_spass(name, master):
     p = subprocess.Popen([
@@ -24,11 +30,13 @@ def call_spass(name, master):
         p.kill()
         return 'Error: spass process timedout'
 
-    return out if p.returncode == 0 else err
+    return (out if p.returncode == 0 else err), p.returncode
 
 @app.route('/getpwd', methods=['POST'])
 def getpwd():
-    return call_spass(request.form['name'], request.form['master'])
+    val, code = call_spass(request.form['name'], request.form['master'])
+    app.logger.info('%s %s %d', request.remote_addr, request.form['name'], code)
+    return val
 
 @app.route('/')
 def index():
