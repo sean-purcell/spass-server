@@ -3,14 +3,113 @@
 	<head>
 	</head>
 	<body>
-		<form method="post" enctype="application/x-www-form-urlencoded" action="/getpwd">
+		<form method="post" enctype="application/x-www-form-urlencoded" action="/get">
+            <h2>Get Password</h2>
+			<div>
+				<label for="master">Master password:</label>
+				<input type="password" name="master" id="master" />
+			</div>
 			<div>
 				<label for="name">Password name:</label>
 				<input type="text" name="name" id="name" />
 			</div>
+			<div class="button">
+				<button type="submit">go</button>
+			</div>
+		</form>
+		<form method="post" enctype="application/x-www-form-urlencoded" action="/ls">
+            <h2>List All Passwords</h2>
 			<div>
 				<label for="master">Master password:</label>
 				<input type="password" name="master" id="master" />
+			</div>
+			<div class="button">
+				<button type="submit">go</button>
+			</div>
+		</form>
+		<form method="post" enctype="application/x-www-form-urlencoded" action="/gen">
+            <h2>Generate Password</h2>
+			<div>
+				<label for="master">Master password:</label>
+				<input type="password" name="master" />
+			</div>
+			<div>
+				<label for="name">Password name:</label>
+				<input type="text" name="name" />
+			</div>
+			<div>
+				<label for="length">Length:</label>
+				<input type="number" name="length" value="20"/>
+			</div>
+            <div>
+                <label for="lower">Lower case letters (a-z):
+                <input type="checkbox" name="lower" checked>
+            </div>
+            <div>
+                <label for="upper">Upper case letters (A-Z):
+                <input type="checkbox" name="upper" checked>
+            </div>
+            <div>
+                <label for="digit">Digits (0-9):
+                <input type="checkbox" name="digit" checked>
+            </div>
+            <div>
+                <label for="sym">Symbols (!@#$%?):
+                <input type="checkbox" name="sym" checked>
+            </div>
+			<div class="button">
+				<button type="submit">go</button>
+			</div>
+		</form>
+		<form method="post" enctype="application/x-www-form-urlencoded" action="/add">
+            <h2>Add Password</h2>
+			<div>
+				<label for="master">Master password:</label>
+				<input type="password" name="master" />
+			</div>
+			<div>
+				<label for="name">Password name:</label>
+				<input type="text" name="name" />
+			</div>
+			<div>
+				<label for="master">Password:</label>
+				<input type="password" name="password" />
+			</div>
+			<div>
+				<label for="master">Confirm Password:</label>
+				<input type="password" name="confirm"/>
+			</div>
+			<div class="button">
+				<button type="submit">go</button>
+			</div>
+		</form>
+		<form method="post" enctype="application/x-www-form-urlencoded" action="/rm">
+            <h2>Remove Password</h2>
+			<div>
+				<label for="master">Master password:</label>
+				<input type="password" name="master" />
+			</div>
+			<div>
+				<label for="name">Password name:</label>
+				<input type="text" name="name" />
+			</div>
+			<div class="button">
+				<button type="submit">go</button>
+			</div>
+		</form>
+		<form method="post" enctype="application/x-www-form-urlencoded" action="/chpw">
+            <h2>Change master password</h2>
+			<div>
+				<label for="master">Master password:</label>
+				<input type="password" name="master" />
+			</div>
+			<div>
+				<label for="newmaster">New master password:</label>
+				<input type="password" name="newmaster" />
+			</div>
+			<div>
+				<label for="confirm">Confirm new master password:</label>
+				<input type="password" name="confirm" />
 			</div>
 			<div class="button">
 				<button type="submit">go</button>
