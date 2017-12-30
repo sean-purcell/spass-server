@@ -33,20 +33,20 @@ def call_spass(stdin, cmd):
 
     return out + err, p.returncode
 
-@app.route('/get', methods=['POST'])
+@app.route('/spass/get', methods=['POST'])
 def get():
     val, code = call_spass(request.form['master'], ['get',
         request.form['name']])
     app.logger.info('get: %s %s %d', request.remote_addr, request.form['name'], code)
     return val
 
-@app.route('/ls', methods=['POST'])
+@app.route('/spass/ls', methods=['POST'])
 def ls():
     val, code = call_spass(request.form['master'], ['ls'])
     app.logger.info('ls: %s %d', request.remote_addr, code)
     return val.replace(b'\n', b'<br/>')
 
-@app.route('/gen', methods=['POST'])
+@app.route('/spass/gen', methods=['POST'])
 def gen():
     print(request.form)
     def C(name):
@@ -62,7 +62,7 @@ def gen():
     app.logger.info('gen: %s %s %d', request.remote_addr, request.form['name'], code)
     return val.replace(b'\n', b'<br/>')
 
-@app.route('/add', methods=['POST'])
+@app.route('/spass/add', methods=['POST'])
 def add():
     val, code = call_spass(
         '%s\n%s\n%s' % (request.form['master'], request.form['password'],
@@ -71,7 +71,7 @@ def add():
     app.logger.info('add: %s %s %d', request.remote_addr, request.form['name'], code)
     return val
 
-@app.route('/rm', methods=['POST'])
+@app.route('/spass/rm', methods=['POST'])
 def rm():
     val, code = call_spass(
         '%s' % (request.form['master']),
@@ -79,7 +79,7 @@ def rm():
     app.logger.info('rm: %s %s %d', request.remote_addr, request.form['name'], code)
     return val
 
-@app.route('/chpw', methods=['POST'])
+@app.route('/spass/chpw', methods=['POST'])
 def chpw():
     val, code = call_spass(
         '%s\n%s\n%s' % (request.form['master'], request.form['newmaster'],
