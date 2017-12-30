@@ -8,7 +8,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-SPASS=sys.argv[1] if len(sys.argv) > 1 else '/usr/local/bin/spass'
+SPASS=sys.argv[1] if len(sys.argv) > 1 else 'spass'
 DBFILE=sys.argv[2] if len(sys.argv) > 2 else ''
 
 COMMAND = [SPASS, '-s'] + (['-d', DBFILE] if DBFILE else [])
@@ -77,6 +77,7 @@ def rm():
         '%s' % (request.form['master']),
         ['rm', request.form['name']])
     app.logger.info('rm: %s %s %d', request.remote_addr, request.form['name'], code)
+    return val
 
 @app.route('/chpw', methods=['POST'])
 def chpw():
