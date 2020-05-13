@@ -2,7 +2,7 @@ FROM alpine:edge
 
 WORKDIR /app
 
-RUN apk --no-cache add bash python3 py3-pip uwsgi uwsgi-python3
+RUN apk --no-cache add bash python3 py3-pip uwsgi uwsgi-python3 libgcc libc6-compat
 RUN pip3 install --trusted-host pypi.python.org --upgrade pip
 
 RUN apk --no-cache add py3-wheel
@@ -14,6 +14,7 @@ ADD spass /app/
 ADD uwsgi.ini /app/
 ADD nginx.conf /app/
 ADD entry.sh /app/
+ADD static/index.html /app/
 
 # self-documentation
 ADD Dockerfile /app/
