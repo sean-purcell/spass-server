@@ -1,9 +1,10 @@
 #!/bin/bash
 
+trap exit INT TERM
+
 set -euxo pipefail
 
-mkdir -p /www/spass
-cp index.html /www/spass
-cp nginx.conf /conf/spass.conf
+nginx -t
+nginx
 
 uwsgi --ini uwsgi.ini
